@@ -16,7 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __QUEUE_HPP__
 #define __QUEUE_HPP__
 
-#include "array.hpp"
+#include "span.hpp"
 
 namespace emb {
 

@@ -13,23 +13,25 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __ARRAY_HPP__
-#define __ARRAY_HPP__
+#ifndef __SPAN_HPP__
+#define __SPAN_HPP__
 
-#include "stdlib.h"
-#include <assert.h>
+#include <array.hpp>
 
 namespace emb {
 
-template <typename T, size_t N> struct array {
-  T storage[N];
-  static constexpr size_t size = N;
+template <typename T> struct span {
+  T *storage;
+  size_t size;
+
+  constexpr span() : storage(NULL), size(0) {}
+
+  constexpr span(T *storage, size_t size) : storage(storage), size(size) {}
+
+  template <size_t N>
+  constexpr span(array<T, N> &arr) : span(&arr[0], arr.size) {}
 
   T &operator[](size_t i) {
-    assert(i < size);
-    return storage[i];
-  };
-  const T &operator[](size_t i) const {
     assert(i < size);
     return storage[i];
   };
@@ -43,6 +45,25 @@ template <typename T, size_t N> struct array {
   iterator begin() { return &storage[0]; }
   iterator end() { return (&storage[size]); }
 };
+
+template <typename T> bool compare(span<T> lhs, span<T> rhs) {
+  bool same = true;
+
+  for (unsigned int i = 0; i < lhs.size; i++) {
+    if (lhs[i] != rhs[i]) {
+      same = false;
+      break;
+    }
+  }
+
+  return same;
+}
+
+template <typename T> void copy(span<T> dest, span<T> src) {
+  for (unsigned int i = 0; i < src.size; i++) {
+    dest[i] = src[i];
+  }
+}
 }
 
 #endif

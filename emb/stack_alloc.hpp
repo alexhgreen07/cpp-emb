@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "allocator.hpp"
 
-#include "array.hpp"
+#include "span.hpp"
 
 namespace emb {
 
