@@ -32,7 +32,7 @@ TEST_BASE(StackAllocBase) {
 TEST_GROUP_BASE(StackAlloc, StackAllocBase){};
 
 TEST(StackAlloc, BasicInitialization) {
-  LONGS_EQUAL(storage.size, stack.available());
+  LONGS_EQUAL(storage.size(), stack.available());
 }
 
 TEST(StackAlloc, AllocationWithoutArguments) {
@@ -54,5 +54,5 @@ TEST(StackAlloc, AllocationWithArguments) {
 TEST(StackAlloc, AllocateAndDeallocate) {
   TestStruct *testStruct = allocator.allocate<TestStruct>();
   allocator.deallocate(testStruct);
-  LONGS_EQUAL(storage.size, stack.available());
+  LONGS_EQUAL(storage.size(), stack.available());
 }

@@ -29,7 +29,7 @@ template <typename T> struct span {
   constexpr span(T *storage, size_t size) : storage(storage), size(size) {}
 
   template <size_t N>
-  constexpr span(array<T, N> &arr) : span(&arr[0], arr.size) {}
+  constexpr span(array<T, N> &arr) : span(&arr[0], arr.size()) {}
 
   T &operator[](size_t i) {
     assert(i < size);

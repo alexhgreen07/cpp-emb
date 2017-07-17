@@ -8,7 +8,7 @@ using namespace emb;
 
 TEST_GROUP(Array) { array<char, arraySize> testArray; };
 
-TEST(Array, BasicInitialization) { LONGS_EQUAL(arraySize, testArray.size); }
+TEST(Array, BasicInitialization) { LONGS_EQUAL(arraySize, testArray.size()); }
 
 TEST(Array, SetAndGetSingleElement) {
   testArray[0] = 'a';

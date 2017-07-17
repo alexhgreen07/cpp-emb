@@ -23,25 +23,28 @@ namespace emb {
 
 template <typename T, size_t N> struct array {
   T storage[N];
-  static constexpr size_t size = N;
 
   T &operator[](size_t i) {
-    assert(i < size);
+    assert(i < size());
     return storage[i];
   };
   const T &operator[](size_t i) const {
-    assert(i < size);
+    assert(i < size());
     return storage[i];
   };
+
+  constexpr size_t size() const { return N; }
+
+  constexpr T *data() const { return storage; }
 
   typedef T *iterator;
   typedef const T *const_iterator;
 
   const_iterator begin() const { return &storage[0]; }
-  const_iterator end() const { return (&storage[size]); }
+  const_iterator end() const { return (&storage[N]); }
 
   iterator begin() { return &storage[0]; }
-  iterator end() { return (&storage[size]); }
+  iterator end() { return (&storage[N]); }
 };
 }
 
