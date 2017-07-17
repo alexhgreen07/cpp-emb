@@ -27,9 +27,9 @@ class HeapAllocator : public RawAllocator {
 public:
   virtual ~HeapAllocator() {}
 
-  virtual void *alloc(size_t count) override { return malloc(count); }
+  virtual void *allocate(size_t count) override { return malloc(count); }
 
-  virtual void free(void *ptr) override { free(ptr); }
+  virtual void deallocate(void *ptr, size_t) override { free(ptr); }
 };
 
 }

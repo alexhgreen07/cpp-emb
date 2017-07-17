@@ -1,5 +1,5 @@
 
-env = Environment(CPPFLAGS='-std=c++11',CPPPATH=['emb','cpputest/include']) 
+env = Environment(CPPFLAGS='-std=c++11 -Og -g3 -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED',CPPPATH=['emb','cpputest/include']) 
 
 cpputest_sources = Glob("cpputest/src/CppUTest/*.cpp")
 cpputest_platform = Glob("cpputest/src/Platforms/Gcc/*.cpp")

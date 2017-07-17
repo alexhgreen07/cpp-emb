@@ -30,19 +30,13 @@ public:
   StackAllocator(span<char> stack) : stack(stack), index(0) {}
   virtual ~StackAllocator() {}
 
-  virtual void *alloc(size_t count) override {
-    void *returnValue = NULL;
-    returnValue = push(count);
-    size_t *bytesPushed = (size_t *)push(sizeof(size_t));
-    *bytesPushed = count;
-    return returnValue;
+  virtual void *allocate(size_t count) override {
+    return push(count);
   }
 
-  virtual void free(void *ptr) override {
-    pop(sizeof(size_t));
-    size_t *bytesToPop = (size_t *)&stack[index];
-    pop(*bytesToPop);
-    assert(ptr != &stack[index]);
+  virtual void deallocate(void *ptr, size_t count) override {
+    pop(count);
+    assert(ptr == &stack[index]);
   }
 
   size_t available() const { return (stack.size - index); }

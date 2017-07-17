@@ -24,8 +24,8 @@ namespace emb
 class RawAllocator {
 public:
   virtual ~RawAllocator() {}
-  virtual void *alloc(size_t size) = 0;
-  virtual void free(void *ptr) = 0;
+  virtual void *allocate(size_t size) = 0;
+  virtual void deallocate(void *ptr, size_t size) = 0;
 };
 
 class Allocator {
@@ -36,7 +36,11 @@ public:
     return new (*this) Allocated<T>(*this, args...);
   }
 
-  template <typename T> void deallocate(T *ptr) { delete ptr; }
+  template <typename T> void deallocate(T *ptr)
+  {
+	  Allocated<T> *allocPtr = (Allocated<T>*)ptr;
+	  delete allocPtr;
+  }
 
 private:
   template <typename T> class Allocated : public T {
@@ -46,12 +50,12 @@ private:
         : T(args...), allocator(stack) {}
 
     static void *operator new(size_t, Allocator &allocator) {
-      return allocator.rawAllocator.alloc(sizeof(Allocated<T>));
+      return allocator.rawAllocator.allocate(sizeof(Allocated<T>));
     }
 
     static void operator delete(void *ptr) {
       Allocated *obj = (Allocated *)ptr;
-      obj->allocator.rawAllocator.free(ptr);
+      obj->allocator.rawAllocator.deallocate(ptr, sizeof(Allocated<T>));
     }
 
     Allocator &allocator;

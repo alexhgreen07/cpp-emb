@@ -50,3 +50,9 @@ TEST(StackAlloc, AllocationWithArguments) {
   LONGS_EQUAL(5, testStruct->otherstuff);
   LONGS_EQUAL(4, testStruct->stuff);
 }
+
+TEST(StackAlloc, AllocateAndDeallocate) {
+	TestStruct *testStruct = allocator.allocate<TestStruct>();
+	allocator.deallocate(testStruct);
+	LONGS_EQUAL(storage.size, stack.available());
+}
