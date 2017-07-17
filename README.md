@@ -21,3 +21,13 @@ To build the tests run:
 To run the built tests, use:
 
 `./bin/test.exe`
+
+## Formatting
+
+To run the formatter, first install clang format:
+
+`sudo apt install clang-format-3.8`
+
+Then to run the formatter us:
+
+`./tools/format.sh`
