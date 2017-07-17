@@ -3,9 +3,9 @@ C++ embedded helper library
 
 This project uses the `scons` build system and `cpputest` test framework.
 
-To clone run: 
+To clone repo with submodules run: 
 
-`git clone --recursive`
+`git clone --recursive <repo_url>`
 
 To install `scons` in Debian based systems such as Ubuntu use:
 
