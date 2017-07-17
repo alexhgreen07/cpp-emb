@@ -22,17 +22,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "array.hpp"
 
-namespace emb
-{
+namespace emb {
 
 class StackAllocator : public RawAllocator {
 public:
   StackAllocator(span<char> stack) : stack(stack), index(0) {}
   virtual ~StackAllocator() {}
 
-  virtual void *allocate(size_t count) override {
-    return push(count);
-  }
+  virtual void *allocate(size_t count) override { return push(count); }
 
   virtual void deallocate(void *ptr, size_t count) override {
     pop(count);
@@ -55,7 +52,6 @@ protected:
   span<char> stack;
   unsigned int index;
 };
-
 }
 
 #endif

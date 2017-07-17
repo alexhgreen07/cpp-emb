@@ -19,8 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "stdlib.h"
 #include <assert.h>
 
-namespace emb
-{
+namespace emb {
 
 template <typename T> struct span {
   T *storage;
@@ -97,7 +96,6 @@ template <typename T> void copy(span<T> dest, span<T> src) {
     dest[i] = src[i];
   }
 }
-
 }
 
 #endif

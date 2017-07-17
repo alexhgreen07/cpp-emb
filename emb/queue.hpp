@@ -18,8 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "array.hpp"
 
-namespace emb
-{
+namespace emb {
 
 template <typename T> class queue {
 public:
@@ -65,7 +64,6 @@ template <typename T, size_t N> struct queuebuilder {
 
   queuebuilder() : q(a) {}
 };
-
 }
 
 #endif

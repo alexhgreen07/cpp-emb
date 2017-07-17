@@ -18,8 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdlib.h>
 
-namespace emb
-{
+namespace emb {
 
 class RawAllocator {
 public:
@@ -36,10 +35,9 @@ public:
     return new (*this) Allocated<T>(*this, args...);
   }
 
-  template <typename T> void deallocate(T *ptr)
-  {
-	  Allocated<T> *allocPtr = (Allocated<T>*)ptr;
-	  delete allocPtr;
+  template <typename T> void deallocate(T *ptr) {
+    Allocated<T> *allocPtr = (Allocated<T> *)ptr;
+    delete allocPtr;
   }
 
 private:
@@ -63,7 +61,6 @@ private:
 
   RawAllocator &rawAllocator;
 };
-
 }
 
 #endif

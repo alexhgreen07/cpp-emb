@@ -20,8 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "allocator.hpp"
 
-namespace emb
-{
+namespace emb {
 
 class HeapAllocator : public RawAllocator {
 public:
@@ -31,7 +30,6 @@ public:
 
   virtual void deallocate(void *ptr, size_t) override { free(ptr); }
 };
-
 }
 
 #endif
