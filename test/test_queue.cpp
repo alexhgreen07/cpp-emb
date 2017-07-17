@@ -2,6 +2,8 @@
 
 #include "queue.hpp"
 
+using namespace emb;
+
 static constexpr size_t arraySize = 10;
 
 TEST_BASE(QueueTestGroupBase) {

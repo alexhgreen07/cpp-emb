@@ -2,6 +2,8 @@
 
 #include <CppUTest/TestHarness.h>
 
+using namespace emb;
+
 struct TestStruct {
   int stuff;
   char otherstuff;
