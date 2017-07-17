@@ -1,7 +1,10 @@
 # cpp-emb
 C++ embedded helper library
 
-This project uses the `scons` build system and `cpputest` test framework.
+This project uses the `scons` build system and `cpputest` test framework. See:
+
+* Scons: http://scons.org/
+* CppUTest: https://cpputest.github.io/
 
 To clone repo with submodules run: 
 
