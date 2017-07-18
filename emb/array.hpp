@@ -35,6 +35,7 @@ template <typename T, size_t N> struct array {
 
   constexpr size_t size() const { return N; }
 
+  T *data() { return storage; }
   constexpr T *data() const { return storage; }
 
   typedef T *iterator;

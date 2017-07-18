@@ -35,17 +35,17 @@ template <typename T> struct span {
   template <size_t N>
   constexpr span(array<T, N> &arr) : span(&arr[0], arr.size()) {}
 
-  constexpr span first(size_t count) const {
+  span first(size_t count) const {
     assert(count >= 0 && count <= size());
     return {data(), count};
   }
 
-  constexpr span last(size_t count) const {
+  span last(size_t count) const {
     assert(count >= 0 && count <= size());
     return {data() + (size() - count), count};
   }
 
-  constexpr span subspan(size_t offset, size_t count) const {
+  span subspan(size_t offset, size_t count) const {
     assert((offset == 0 || (offset > 0 && offset <= size())) &&
            (count == storageSize || (count >= 0 && offset + count <= size())));
     return {data() + offset, count == storageSize ? size() - offset : count};
@@ -60,8 +60,11 @@ template <typename T> struct span {
   constexpr size_t length() const { return size(); }
   constexpr bool empty() const { return size() == 0; }
 
+  T &at(size_t i) { return this->operator[](i); }
   constexpr T &at(size_t i) const { return this->operator[](i); }
+  T &operator()(size_t i) { return this->operator[](i); }
   constexpr T &operator()(size_t i) const { return this->operator[](i); }
+
   constexpr T *data() const { return storage; }
 
   typedef T *iterator;
@@ -78,7 +81,7 @@ private:
   size_t storageSize;
 };
 template <typename T>
-inline constexpr bool operator==(const span<T> &l, const span<T> &r) {
+inline bool operator==(const span<T> &l, const span<T> &r) {
   if (l.size() != r.size())
     return false;
 
@@ -96,7 +99,7 @@ inline constexpr bool operator==(const span<T> &l, const span<T> &r) {
 }
 
 template <typename T>
-inline constexpr bool operator!=(const span<T> &l, const span<T> &r) {
+inline bool operator!=(const span<T> &l, const span<T> &r) {
   return !(l == r);
 }
 }
