@@ -48,7 +48,7 @@ public:
   size_t size() const { return currentSize; }
   bool empty() const { return (currentSize == 0); }
 
-  size_t maxSize() const { return storage.size; }
+  size_t maxSize() const { return storage.size(); }
 
 protected:
   span<T> storage;

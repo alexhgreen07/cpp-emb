@@ -36,7 +36,7 @@ public:
     assert(ptr == &stack[index]);
   }
 
-  size_t available() const { return (stack.size - index); }
+  size_t available() const { return (stack.size() - index); }
 
 protected:
   void *push(size_t count) {
