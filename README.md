@@ -28,6 +28,6 @@ To run the formatter, first install clang format:
 
 `sudo apt install clang-format-3.8`
 
-Then to run the formatter us:
+Then to run the formatter use:
 
 `./tools/format.sh`
