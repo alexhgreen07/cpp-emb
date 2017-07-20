@@ -29,18 +29,6 @@ public:
 
 class Allocator {
 public:
-  Allocator(RawAllocator &rawAllocator) : rawAllocator(rawAllocator) {}
-
-  template <typename T, typename... ARGS> T *allocate(ARGS &&... args) {
-    return new (*this) Allocated<T>(*this, args...);
-  }
-
-  template <typename T> void deallocate(T *ptr) {
-    Allocated<T> *allocPtr = (Allocated<T> *)ptr;
-    delete allocPtr;
-  }
-
-private:
   template <typename T> class Allocated : public T {
   public:
     template <typename... ARGS>
@@ -56,8 +44,23 @@ private:
       obj->allocator.rawAllocator.deallocate(ptr, sizeof(Allocated<T>));
     }
 
+  private:
     Allocator &allocator;
   };
+
+  Allocator(RawAllocator &rawAllocator) : rawAllocator(rawAllocator) {}
+
+  template <typename T, typename... ARGS>
+  Allocated<T> *allocate(ARGS &&... args) {
+    return new (*this) Allocated<T>(*this, args...);
+  }
+
+  template <typename T> void deallocate(T *ptr) {
+    Allocated<T> *allocPtr = (Allocated<T> *)ptr;
+    delete allocPtr;
+  }
+
+  template <typename T> void deallocate(Allocated<T> *ptr) { delete ptr; }
 
   RawAllocator &rawAllocator;
 };

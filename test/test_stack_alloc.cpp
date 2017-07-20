@@ -36,7 +36,7 @@ TEST(StackAlloc, BasicInitialization) {
 }
 
 TEST(StackAlloc, AllocationWithoutArguments) {
-  TestStruct *testStruct = allocator.allocate<TestStruct>();
+  auto testStruct = allocator.allocate<TestStruct>();
 
   LONGS_EQUAL(2, testStruct->stuff);
   LONGS_EQUAL(1, testStruct->otherstuff);
@@ -44,7 +44,7 @@ TEST(StackAlloc, AllocationWithoutArguments) {
 }
 
 TEST(StackAlloc, AllocationWithArguments) {
-  TestStruct *testStruct = allocator.allocate<TestStruct>(4, 5);
+  auto testStruct = allocator.allocate<TestStruct>(4, 5);
 
   LONGS_EQUAL(3, testStruct->morestuff);
   LONGS_EQUAL(5, testStruct->otherstuff);
@@ -52,7 +52,13 @@ TEST(StackAlloc, AllocationWithArguments) {
 }
 
 TEST(StackAlloc, AllocateAndDeallocate) {
-  TestStruct *testStruct = allocator.allocate<TestStruct>();
+  auto testStruct = allocator.allocate<TestStruct>();
   allocator.deallocate(testStruct);
+  LONGS_EQUAL(storage.size(), stack.available());
+}
+
+TEST(StackAlloc, AllocateAndDelete) {
+  auto testStruct = allocator.allocate<TestStruct>();
+  delete testStruct;
   LONGS_EQUAL(storage.size(), stack.available());
 }
