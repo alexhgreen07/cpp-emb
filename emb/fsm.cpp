@@ -205,7 +205,7 @@ void Signal::broadcast() {
   }
 }
 
-void buildExecutor(Allocator &allocator, FsmFramework::Scheduler &scheduler,
+void buildExecutor(emb::Allocator &allocator, FsmFramework::Scheduler &scheduler,
                    FsmFramework::Fsm &fsm) {
   auto *executor = allocator.allocate<FsmFramework::Scheduler::Executor>(
       FsmFramework::Scheduler::Entry(&fsm));
