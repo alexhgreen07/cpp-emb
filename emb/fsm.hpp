@@ -118,7 +118,7 @@ template <class T> void Fsm::nextState(void (T::*next)()) {
   this->next = (State)next;
 }
 
-void buildExecutor(Allocator &allocator, FsmFramework::Scheduler &scheduler,
+void buildExecutor(emb::Allocator &allocator, FsmFramework::Scheduler &scheduler,
                    FsmFramework::Fsm &fsm);
 }
 
