@@ -66,8 +66,8 @@ public:
 
   typedef list<Entry>::node Executor;
 
-  Scheduler(ClockInterface &clock = Clock,
-            SystemInterface &system = System::System);
+  Scheduler(ClockInterface &clock,
+            SystemInterface &system);
   virtual ~Scheduler() {}
 
   void start(Executor &executor);

@@ -10,21 +10,19 @@ class ClockInterface {
 public:
   ClockInterface() {}
   virtual ~ClockInterface(){};
-  virtual unsigned long millis();
-  virtual unsigned long micros();
-  virtual void delay(unsigned int ms);
-  virtual void delayMicroseconds(unsigned int us);
+  virtual unsigned long millis() = 0;
+  virtual unsigned long micros() = 0;
+  virtual void delay(unsigned int ms) = 0;
+  virtual void delayMicroseconds(unsigned int us) = 0;
 };
 
 struct SystemInterface {
   virtual ~SystemInterface() {}
 
-  virtual void startCriticalSection();
-  virtual void endCriticalSection();
+  virtual void startCriticalSection() = 0;
+  virtual void endCriticalSection() = 0;
 };
 
-extern ClockInterface Clock;
-extern SystemInterface System;
 }
 
 #endif
