@@ -20,8 +20,8 @@ struct MockClock : public System::ClockInterface {
 };
 
 struct MockSystem : public System::SystemInterface {
-	virtual void startCriticalSection() override {}
-  	virtual void endCriticalSection() override {}
+  virtual void startCriticalSection() override {}
+  virtual void endCriticalSection() override {}
 };
 
 struct FsmTestGroupBase : public Utest {

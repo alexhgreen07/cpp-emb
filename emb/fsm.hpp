@@ -66,8 +66,7 @@ public:
 
   typedef list<Entry>::node Executor;
 
-  Scheduler(ClockInterface &clock,
-            SystemInterface &system);
+  Scheduler(ClockInterface &clock, SystemInterface &system);
   virtual ~Scheduler() {}
 
   void start(Executor &executor);
@@ -118,8 +117,8 @@ template <class T> void Fsm::nextState(void (T::*next)()) {
   this->next = (State)next;
 }
 
-void buildExecutor(emb::Allocator &allocator, FsmFramework::Scheduler &scheduler,
-                   FsmFramework::Fsm &fsm);
-}
+void buildExecutor(emb::Allocator &allocator,
+                   FsmFramework::Scheduler &scheduler, FsmFramework::Fsm &fsm);
+} // namespace FsmFramework
 
 #endif

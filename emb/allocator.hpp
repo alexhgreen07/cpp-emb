@@ -32,7 +32,7 @@ public:
   template <typename T> class Allocated : public T {
   public:
     template <typename... ARGS>
-    Allocated(Allocator &stack, ARGS &&... args)
+    Allocated(Allocator &stack, ARGS &&...args)
         : T(args...), allocator(stack) {}
 
     static void *operator new(size_t, Allocator &allocator) {
@@ -51,7 +51,7 @@ public:
   Allocator(RawAllocator &rawAllocator) : rawAllocator(rawAllocator) {}
 
   template <typename T, typename... ARGS>
-  Allocated<T> *allocate(ARGS &&... args) {
+  Allocated<T> *allocate(ARGS &&...args) {
     return new (*this) Allocated<T>(*this, args...);
   }
 
@@ -64,6 +64,6 @@ public:
 
   RawAllocator &rawAllocator;
 };
-}
+} // namespace emb
 
 #endif

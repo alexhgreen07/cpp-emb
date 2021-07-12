@@ -9,7 +9,7 @@ public:
     node() : next(NULL) {}
 
     template <typename... ARGS>
-    node(ARGS &&... args) : value(args...), next(NULL) {}
+    node(ARGS &&...args) : value(args...), next(NULL) {}
 
     T value;
     node *next;

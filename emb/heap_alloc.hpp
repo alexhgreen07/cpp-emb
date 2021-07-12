@@ -30,6 +30,6 @@ public:
 
   virtual void deallocate(void *ptr, size_t) override { free(ptr); }
 };
-}
+} // namespace emb
 
 #endif

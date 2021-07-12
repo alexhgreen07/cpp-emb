@@ -102,6 +102,6 @@ template <typename T>
 inline bool operator!=(const span<T> &l, const span<T> &r) {
   return !(l == r);
 }
-}
+} // namespace emb
 
 #endif
