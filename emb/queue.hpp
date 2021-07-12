@@ -64,6 +64,6 @@ template <typename T, size_t N> struct queuebuilder {
 
   queuebuilder() : q(a) {}
 };
-}
+} // namespace emb
 
 #endif

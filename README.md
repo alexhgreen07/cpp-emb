@@ -26,7 +26,7 @@ To run the built tests, use:
 
 To run the formatter, first install clang format:
 
-`sudo apt install clang-format-3.8`
+`sudo apt install clang-format-12`
 
 Then to run the formatter use:
 

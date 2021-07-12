@@ -52,6 +52,6 @@ protected:
   span<char> stack;
   unsigned int index;
 };
-}
+} // namespace emb
 
 #endif

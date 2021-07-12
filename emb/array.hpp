@@ -47,6 +47,6 @@ template <typename T, size_t N> struct array {
   iterator begin() { return &storage[0]; }
   iterator end() { return (&storage[N]); }
 };
-}
+} // namespace emb
 
 #endif

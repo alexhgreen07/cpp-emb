@@ -2,6 +2,7 @@
 #define __TEST_FSM_HPP__
 
 #include <CppUTest/TestHarness.h>
+#include <unistd.h>
 
 #include "fsm.hpp"
 
@@ -9,15 +10,24 @@ using namespace FsmFramework;
 
 struct MockClock : public System::ClockInterface {
   virtual unsigned long millis() override { return rawMillis; }
+  virtual unsigned long micros() override { return rawMillis * 1000; }
+  virtual void delay(unsigned int ms) override { usleep(ms * 1000); }
+  virtual void delayMicroseconds(unsigned int us) override { usleep(us); };
 
   void tick(unsigned long millisToTick = 1) { rawMillis += millisToTick; }
 
   unsigned long rawMillis = 0;
 };
 
+struct MockSystem : public System::SystemInterface {
+  virtual void startCriticalSection() override {}
+  virtual void endCriticalSection() override {}
+};
+
 struct FsmTestGroupBase : public Utest {
   MockClock testClock;
   Scheduler scheduler;
+  MockSystem system;
 
   FsmTestGroupBase();
 

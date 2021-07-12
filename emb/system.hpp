@@ -23,6 +23,6 @@ struct SystemInterface {
   virtual void endCriticalSection() = 0;
 };
 
-}
+} // namespace System
 
 #endif

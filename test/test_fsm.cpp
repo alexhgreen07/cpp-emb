@@ -1,7 +1,10 @@
 #include <CppUTest/TestHarness.h>
 
+#include <array.hpp>
+
 #include "test_fsm.hpp"
 
+using emb::array;
 using namespace FsmFramework;
 
 void TestFsm::initial() {}
@@ -40,7 +43,7 @@ void TestFsm::TestChildFsm::initial() {
   done();
 }
 
-FsmTestGroupBase::FsmTestGroupBase() : scheduler(testClock) {}
+FsmTestGroupBase::FsmTestGroupBase() : scheduler(testClock, system) {}
 
 void FsmTestGroupBase::execute(unsigned int count, unsigned int ticks) {
   for (unsigned int i = 0; i < count; i++) {
