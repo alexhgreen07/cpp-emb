@@ -38,7 +38,7 @@ struct FsmTestGroupBase : public Utest {
 
 struct TestFsm : public Fsm {
 
-  bool timedOut();
+  bool expired();
 
   virtual void initial() override;
   void increment();

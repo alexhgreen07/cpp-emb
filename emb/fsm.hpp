@@ -39,7 +39,7 @@ protected:
   void wait(Signal &signal, unsigned long milliseconds = (unsigned long)-1);
   void sleep(unsigned long milliseconds);
 
-  bool timedOut();
+  bool expired();
 
   Scheduler *scheduler;
 

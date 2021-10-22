@@ -7,7 +7,7 @@
 using emb::array;
 using namespace FsmFramework;
 
-bool TestFsm::timedOut() { return Fsm::timedOut(); }
+bool TestFsm::expired() { return Fsm::expired(); }
 
 void TestFsm::initial() {}
 
@@ -171,7 +171,7 @@ TEST(Fsm, WaitsForSignal) {
   for (auto &fsm : otherFsms) {
     LONGS_EQUAL(totalExecutionCount, fsm.counter);
   }
-  CHECK_FALSE(testFsm.timedOut());
+  CHECK_FALSE(testFsm.expired());
 }
 
 TEST(Fsm, WaitsForBroadcast) {
@@ -216,7 +216,7 @@ TEST(Fsm, WaitsForSignalTimeout) {
   for (auto &fsm : otherFsms) {
     LONGS_EQUAL(totalExecutionCount, fsm.counter);
   }
-  CHECK(testFsm.timedOut());
+  CHECK(testFsm.expired());
 }
 
 TEST(Fsm, WaitsForMultipleSignals) {

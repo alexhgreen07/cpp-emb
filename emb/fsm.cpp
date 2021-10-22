@@ -23,7 +23,7 @@ void Fsm::sleep(unsigned long milliseconds) {
   scheduler->sleepCurrentExecutor(milliseconds);
 }
 
-bool Fsm::timedOut() { return lastSignal == NULL; }
+bool Fsm::expired() { return lastSignal == NULL; }
 
 void Fsm::wait(Signal &signal, unsigned long milliseconds) {
   assert(scheduler != NULL);
