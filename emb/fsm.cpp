@@ -23,6 +23,8 @@ void Fsm::sleep(unsigned long milliseconds) {
   scheduler->sleepCurrentExecutor(milliseconds);
 }
 
+bool Fsm::expired() { return lastSignal == NULL; }
+
 void Fsm::wait(Signal &signal, unsigned long milliseconds) {
   assert(scheduler != NULL);
   signal.waitCurrentExecutor(*scheduler, milliseconds);
@@ -127,6 +129,7 @@ void Scheduler::wakeupExpired(list<Entry> &pendingList) {
     if (clock.millis() >= current->value.expiry) {
       pendingList.remove(0);
       current->value.signal = NULL;
+      current->value.fsm->lastSignal = NULL;
       ready.insert(*current);
     } else {
       break;
@@ -164,6 +167,7 @@ void Scheduler::wakeup(list<Entry> &pendingList, Signal &signal, bool all,
     if (current->value.signal == &signal) {
       pendingList.remove(*current);
       current->value.signal = NULL;
+      current->value.fsm->lastSignal = &signal;
       pending.insert(*current);
       if (!all)
         break;

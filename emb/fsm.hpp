@@ -39,6 +39,8 @@ protected:
   void wait(Signal &signal, unsigned long milliseconds = (unsigned long)-1);
   void sleep(unsigned long milliseconds);
 
+  bool expired();
+
   Scheduler *scheduler;
 
 private:
@@ -50,6 +52,7 @@ private:
   void execute();
   State next;
   Fsm *parent;
+  Signal *lastSignal;
 };
 
 class Scheduler {
