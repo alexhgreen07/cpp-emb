@@ -38,6 +38,8 @@ struct FsmTestGroupBase : public Utest {
 
 struct TestFsm : public Fsm {
 
+  bool timedOut();
+
   virtual void initial() override;
   void increment();
   void ping();
