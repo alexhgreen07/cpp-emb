@@ -19,20 +19,20 @@ void Fsm::setup(Scheduler &scheduler) {
 }
 
 void Fsm::sleep(unsigned long milliseconds) {
-  assert(scheduler != NULL);
+  EMB_ASSERT(scheduler != NULL);
   scheduler->sleepCurrentExecutor(milliseconds);
 }
 
 bool Fsm::expired() { return lastSignal == NULL; }
 
 void Fsm::wait(Signal &signal, unsigned long milliseconds) {
-  assert(scheduler != NULL);
+  EMB_ASSERT(scheduler != NULL);
   signal.waitCurrentExecutor(*scheduler, milliseconds);
 }
 
 void Fsm::start(Fsm &newParent) {
 
-  assert(newParent.scheduler != NULL);
+  EMB_ASSERT(newParent.scheduler != NULL);
 
   parent = &newParent;
   setup(*parent->scheduler);
