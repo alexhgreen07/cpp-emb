@@ -1,7 +1,7 @@
 #ifndef __FSM_HPP__
 #define __FSM_HPP__
 
-#include <assert.h>
+#include "emb_assert.hpp"
 
 #include "allocator.hpp"
 #include "array.hpp"
