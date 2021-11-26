@@ -7,8 +7,6 @@
 using emb::array;
 using namespace FsmFramework;
 
-bool TestFsm::expired() { return Fsm::expired(); }
-
 void TestFsm::initial() {}
 
 void TestFsm::increment() { counter++; }
@@ -256,4 +254,14 @@ TEST(Fsm, WaitsForMultipleSignals) {
   for (auto &fsm : otherFsms) {
     LONGS_EQUAL(executionCount + 1, fsm.counter);
   }
+}
+
+TEST(Fsm, CheckNextState) {
+  testFsm.nextState(&TestFsm::ping);
+
+  scheduler.execute();
+  CHECK(testFsm.isNextState(&TestFsm::pong));
+
+  scheduler.execute();
+  CHECK(testFsm.isNextState(&TestFsm::ping));
 }

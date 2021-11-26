@@ -30,6 +30,13 @@ public:
   */
   template <class T> void nextState(void (T::*next)());
 
+  /*!
+  \brief Checks the next state of the state machine
+  \param next The state to check, whether it is next. This can be a class
+  function pointer of any class which can be cast into the \ref Fsm class.
+  */
+  template <class T> bool isNextState(void (T::*next)());
+
 protected:
   void start(Fsm &newParent);
 
@@ -118,6 +125,10 @@ protected:
 
 template <class T> void Fsm::nextState(void (T::*next)()) {
   this->next = (State)next;
+}
+
+template <class T> bool Fsm::isNextState(void (T::*next)()) {
+  return this->next == (State)next;
 }
 
 void buildExecutor(emb::Allocator &allocator,

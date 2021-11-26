@@ -37,8 +37,7 @@ struct FsmTestGroupBase : public Utest {
 };
 
 struct TestFsm : public Fsm {
-
-  bool expired();
+  using Fsm::expired;
 
   virtual void initial() override;
   void increment();
