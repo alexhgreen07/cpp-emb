@@ -257,3 +257,13 @@ TEST(Fsm, WaitsForMultipleSignals) {
     LONGS_EQUAL(executionCount + 1, fsm.counter);
   }
 }
+
+TEST(Fsm, CheckNextState) {
+  testFsm.nextState(&TestFsm::ping);
+
+  scheduler.execute();
+  CHECK(testFsm.isNextState(&TestFsm::pong));
+
+  scheduler.execute();
+  CHECK(testFsm.isNextState(&TestFsm::ping));
+}
