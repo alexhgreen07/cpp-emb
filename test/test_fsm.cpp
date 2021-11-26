@@ -7,8 +7,6 @@
 using emb::array;
 using namespace FsmFramework;
 
-bool TestFsm::expired() { return Fsm::expired(); }
-
 void TestFsm::initial() {}
 
 void TestFsm::increment() { counter++; }
